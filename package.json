@@ -1,0 +1,24 @@
+{
+  "name": "google-apps-script",
+  "version": "1.0.0",
+  "description": "= google-apps-script :toc: left",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --fix src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiro4989/google-apps-script.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiro4989/google-apps-script/issues"
+  },
+  "homepage": "https://github.com/jiro4989/google-apps-script#readme",
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-config-google": "^0.14.0"
+  }
+}
