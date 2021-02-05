@@ -23,7 +23,7 @@ clasp login --no-localhost
 
 [source,bash]
 clasp list # スクリプトIDを確認
-clasp clone -- {スクリプトID}
+clasp clone {スクリプトID}
 
 ローカルでファイルを変更して、 `git push` し終えたら、以下のコマンドでGASにも
 `push` します。
