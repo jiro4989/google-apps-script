@@ -8,7 +8,7 @@ function getInstance(consumer_key, consumer_secret) {
   return new TwitterWebService(consumer_key, consumer_secret);
 }
 
-let TwitterWebService = function(consumer_key, consumer_secret) {
+const TwitterWebService = function(consumer_key, consumer_secret) {
   this.consumer_key = consumer_key;
   this.consumer_secret = consumer_secret;
 };
@@ -30,7 +30,8 @@ TwitterWebService.prototype.authorize = function() {
     Logger.log('Already authorized');
   } else {
     const authorizationUrl = service.authorize();
-    Logger.log('Open the following URL and re-run the script: %s', authorizationUrl);
+    Logger.log('Open the following URL and re-run the script: %s',
+        authorizationUrl);
   }
 };
 
