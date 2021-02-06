@@ -1,5 +1,6 @@
 /**
- * 外部公開API
+ * 天気を検索してSlackに通知するBot。
+ * スラッシュコマンドから起動される。
  * @param {Event} e
  * @return {Error}
  */
