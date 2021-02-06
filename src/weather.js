@@ -13,7 +13,7 @@ const weatherSearchCountry = props.getProperty('WEATHER_SEARCH_COUNTRY');
 /**
  * Twitterのユーザー名を指定都市の現在の天気と時刻を付与して更新する。
  */
-function weatherUpdateTwitterUserNameWithCurrentWeather() {
+function updateTwitterUserNameWithCurrentWeather() {
   const searchQuery = {
     city: weatherSearchCity,
     country: weatherSearchCountry,
