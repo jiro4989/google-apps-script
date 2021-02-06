@@ -1,7 +1,60 @@
 /**
+ * TwitterWebServiceのインスタンスを生成して返す。
+ * @param {String} consumerKey TwitterのAPI key
+ * @param {String} consumerSecret TwitterのAPI secret key
+ * @return {TwitterWebService}
+ */
+function getInstance(consumerKey, consumerSecret) {
+  return new TwitterWebService(consumerKey, consumerSecret);
+}
+
+const TwitterWebService = function(consumerKey, consumerSecret) {
+  this.consumerKey = consumerKey;
+  this.consumerSecret = consumerSecret;
+};
+
+TwitterWebService.prototype.getService = function() {
+  return OAuth1.createService('Twitter')
+      .setAccessTokenUrl('https://api.twitter.com/oauth/access_token')
+      .setRequestTokenUrl('https://api.twitter.com/oauth/request_token')
+      .setAuthorizationUrl('https://api.twitter.com/oauth/authorize')
+      .setConsumerKey(this.consumerKey)
+      .setConsumerSecret(this.consumerSecret)
+      .setCallbackFunction('authCallback')
+      .setPropertyStore(PropertiesService.getUserProperties());
+};
+
+TwitterWebService.prototype.authorize = function() {
+  const service = this.getService();
+  if (service.hasAccess()) {
+    Logger.log('Already authorized');
+  } else {
+    const authorizationUrl = service.authorize();
+    Logger.log('Open the following URL and re-run the script: %s',
+        authorizationUrl);
+  }
+};
+
+TwitterWebService.prototype.reset = function() {
+  const service = this.getService();
+  service.reset();
+};
+
+TwitterWebService.prototype.authCallback = function(request) {
+  const service = this.getService();
+  const isAuthorized = service.handleCallback(request);
+  const mimeType = ContentService.MimeType.TEXT;
+  if (isAuthorized) {
+    return ContentService.createTextOutput('Success').setMimeType(mimeType);
+  } else {
+    return ContentService.createTextOutput('Denied').setMimeType(mimeType);
+  }
+};
+
+/**
  * @type {Object} OAuth1認証用インスタンス。プロパティはGASの画面から設定が必要。
  */
-const twitter = TwitterWebService.getInstance(
+const twitter = getInstance(
     PropertiesService.getScriptProperties().getProperty('TWITTER_API_KEY'),
     PropertiesService.getScriptProperties().getProperty('TWITTER_API_SECRET'),
 );
@@ -51,7 +104,7 @@ function twitterReset() {
  * @param {Object} request
  * @return {Object}
  */
-function twitterAuthCallback(request) {
+function authCallback(request) {
   return twitter.authCallback(request);
 }
 
