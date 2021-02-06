@@ -6,6 +6,24 @@ const twitter = TwitterWebService.getInstance(
     PropertiesService.getScriptProperties().getProperty('TWITTER_API_SECRET'),
 );
 
+/*
+
+そのうち使うかも
+
+// 他のプロジェクトでTwitterWebServiceを使用していると
+// そちらと認証が同じになってしまうのでそれの回避目的。
+twitter.getService = function() {
+  return OAuth1.createService('Twitter2')
+    .setAccessTokenUrl('https://api.twitter.com/oauth/access_token')
+    .setRequestTokenUrl('https://api.twitter.com/oauth/request_token')
+    .setAuthorizationUrl('https://api.twitter.com/oauth/authorize')
+    .setConsumerKey(twitter.consumer_key)
+    .setConsumerSecret(twitter.consumer_secret)
+    .setCallbackFunction('authCallback')
+    .setPropertyStore(PropertiesService.getUserProperties())
+}
+*/
+
 /**
  * @type {String} TwitterAPIのBaseURL。
  */

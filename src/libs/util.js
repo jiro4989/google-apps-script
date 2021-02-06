@@ -13,3 +13,30 @@ function utilFormatTime(date) {
   const timeText = pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
   return timeText;
 }
+
+// WIP //
+
+// getCurrentFormatedTime は現在時刻を書式を整えて返す。
+function getCurrentFormatedDateTime() {
+  return formatTime(new Date());
+}
+
+function takeFormatedDate(dt) {
+  return formatTime(dt).split(" ")[0];
+}
+
+function takeFormatedTime(dt) {
+  return formatTime(dt).split(" ")[1];
+}
+
+// formatTime はDate変数から時刻文字列を生成します。
+function formatTime(dt) {
+  var year    = dt.getFullYear();
+  var month   = ("0" + (dt.getMonth() + 1)).slice(-2);
+  var date    = ("0" + dt.getDate()).slice(-2);
+  var hours   = ("0" + dt.getHours()).slice(-2);
+  var minutes = ("0" + dt.getMinutes()).slice(-2);
+  var seconds = ("0" + dt.getSeconds()).slice(-2);
+//  return year + "/" + month + "/" + date + " " + hours + ":" + minutes + ":" + seconds + " GMT+0900(JST)"
+  return year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
+}
