@@ -1,5 +1,6 @@
-// WIP //
-
+/**
+ * main
+ */
 function main() {
   const sheet = SpreadsheetApp.getActiveSheet();
   const range = sheet.getRange('A2:I64');
@@ -12,8 +13,11 @@ function main() {
   }
 }
 
-// ユーザーレコードの都市、国情報から天気情報を取得し、
-// 気温が基準値を超過していた場合にメール通知をだす
+/**
+ * ユーザーレコードの都市、国情報から天気情報を取得し、
+ * 気温が基準値を超過していた場合にメール通知をだす
+ * @param {*} user
+ */
 function sendEmail(user) {
   Logger.log('sendNotice:', user);
 
@@ -41,7 +45,7 @@ function sendEmail(user) {
   // 気温が下限値を下回ったら通知
   if (minTemperature < userMap.underTemperature) {
     Logger.log('気温が下限を下回っていたのでメール通知');
-    var info = '⇩';
+    const info = '⇩';
     send(userMap, info, weather);
     return;
   }
@@ -49,12 +53,17 @@ function sendEmail(user) {
   // 気温が上限値を上回ったら通知
   if (userMap.overTemperature < maxTemperature) {
     Logger.log('気温が上限を上回っていたのでメール通知');
-    var info = '⇧';
+    const info = '⇧';
     send(userMap, info, weather);
     return;
   }
 }
 
+/**
+ * UserをMapに変換する
+ * @param {User} user
+ * @return {Map}
+ */
 function toMap(user) {
   return {
     id: user[0],
@@ -69,7 +78,12 @@ function toMap(user) {
   };
 }
 
-// isRangeTime は時刻が、ユーザのメール通知時刻かどうかを判定する。
+/**
+ * isRangeTime は時刻が、ユーザのメール通知時刻かどうかを判定する。
+ * @param {User} user
+ * @param {Date} date
+ * @return {Boolean}
+ */
 function isRangeTime(user, date) {
   const userTime = takeFormatedTime(user.noticeTime);
   const checkTime = takeFormatedTime(date);
@@ -78,6 +92,12 @@ function isRangeTime(user, date) {
   return userTimeHour === checkTimeHour;
 }
 
+/**
+ * メールを送信する。
+ * @param {Map} userMap
+ * @param {String} info
+ * @param {Object} weather
+ */
 function send(userMap, info, weather) {
   const weatherIcon = getWeatherIconString(weather.list[0].weather[0].id);
   info = weatherIcon + info;
@@ -88,14 +108,25 @@ function send(userMap, info, weather) {
   MailApp.sendEmail(userMap.email, subject, message);
 }
 
-// makeSubject はメール件名を作成する。
+
+/**
+ * makeSubject はメール件名を作成する。
+ * @param {User} user
+ * @param {String} message
+ * @return {String}
+ */
 function makeSubject(user, message) {
   const currentTime = getCurrentFormatedDateTime();
   const subject = '【お天気情報】' + currentTime + '/' + message;
   return subject;
 }
 
-// makeMessage はメール本文を作成する。
+/**
+ * makeMessage はメール本文を作成する。
+ * @param {User} user
+ * @param {Object} weather
+ * @return {String}
+ */
 function makeMessage(user, weather) {
   const weatherIcon = getWeatherIconString(weather.list[0].weather[0].id);
   const currentTemperature = weather.list[0].main.temp;

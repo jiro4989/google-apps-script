@@ -1,5 +1,8 @@
-// wip //
-
+/**
+ * 外部公開API
+ * @param {Event} e
+ * @return {Error}
+ */
 function doPost(e) {
   const verifyToken = '';
 
@@ -17,16 +20,21 @@ function doPost(e) {
     let message = '';
     const city = e.parameter.text.substr('weather:'.length);
     try {
-      const weather = openWeatherMapApiFetchWeather(ownWeatherSearchCity, ownWeatherSearchCountry);
+      const weather = openWeatherMapApiFetchWeather(ownWeatherSearchCity,
+          ownWeatherSearchCountry);
       switch (weather.cod) {
         case 200:
           message = 'はい、[' + e.parameter.text.substr('weather:'.length) +']';
           break;
         default:
-          message = '申し訳ありません。\n気象情報の取得に失敗いたしました。\n存在していない都市名を指定していませんか？\ncity=[' + city + '],code=[' + weather.cod + ']';
+          message = '申し訳ありません。\n気象情報の取得に失敗いたしました。\n' +
+              '存在していない都市名を指定していませんか？\n' +
+              'city=[' + city + '],code=[' + weather.cod + ']';
       }
     } catch (e) {
-      message = '申し訳ありません。\n気象情報の取得に失敗いたしました。\n存在していない都市名を指定していませんか？\ncity=[' + city + ']';
+      message = '申し訳ありません。\n気象情報の取得に失敗いたしました。\n' +
+          '存在していない都市名を指定していませんか？\n' +
+          'city=[' + city + ']';
     }
 
     return app.postMessage(chanel, message, {

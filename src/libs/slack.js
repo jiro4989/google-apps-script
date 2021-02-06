@@ -1,1 +1,3 @@
-const slackIncomingWebhookToken = PropertiesService.getScriptProperties().getProperty('SLACK_INCOMING_WEBHOOK_TOKEN');
+const slackIncomingWebhookToken = PropertiesService
+    .getScriptProperties()
+    .getProperty('SLACK_INCOMING_WEBHOOK_TOKEN');

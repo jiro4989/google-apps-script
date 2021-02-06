@@ -1,4 +1,6 @@
-// sendEmail はメールで気象情報を送信します。
+/**
+ * sendEmail はメールで気象情報を送信します。
+ */
 function sendEmail() {
   const sheet = SpreadsheetApp.getActiveSheet();
   const range = sheet.getRange('B2:F32');
@@ -41,7 +43,11 @@ function sendEmail() {
   }
 }
 
-// formatTime はDate変数から時刻文字列を生成します。
+/**
+ * formatTime はDate変数から時刻文字列を生成します。
+ * @param {Date} dt
+ * @return {String}
+ */
 function formatTime(dt) {
   const year = dt.getFullYear();
   const month = ('0' + (dt.getMonth() + 1)).slice(-2);
@@ -49,5 +55,6 @@ function formatTime(dt) {
   const hours = ('0' + dt.getHours()).slice(-2);
   const minutes = ('0' + dt.getMinutes()).slice(-2);
   const seconds = ('0' + dt.getSeconds()).slice(-2);
-  return year + '/' + month + '/' + date + ' ' + hours + ':' + minutes + ':' + seconds + ' GMT+0900(JST)';
+  return year + '/' + month + '/' + date + ' ' +
+      hours + ':' + minutes + ':' + seconds + ' GMT+0900(JST)';
 }

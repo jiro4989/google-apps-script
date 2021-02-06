@@ -14,7 +14,7 @@ function utilFormatTime(date) {
   return timeText;
 }
 
-// WIP //
+/*
 
 // getCurrentFormatedTime は現在時刻を書式を整えて返す。
 function getCurrentFormatedDateTime() {
@@ -37,6 +37,8 @@ function formatTime(dt) {
   const hours = ('0' + dt.getHours()).slice(-2);
   const minutes = ('0' + dt.getMinutes()).slice(-2);
   const seconds = ('0' + dt.getSeconds()).slice(-2);
-  //  return year + "/" + month + "/" + date + " " + hours + ":" + minutes + ":" + seconds + " GMT+0900(JST)"
-  return year + '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + seconds;
+  return year + '-' + month + '-' + date + ' ' +
+    hours + ':' + minutes + ':' + seconds;
 }
+
+*/
