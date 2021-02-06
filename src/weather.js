@@ -11,9 +11,9 @@ const weatherSearchCity = props.getProperty('WEATHER_SEARCH_CITY');
 const weatherSearchCountry = props.getProperty('WEATHER_SEARCH_COUNTRY');
 
 /**
- * Twitterのユーザー名を指定都市の現在の天気と時刻を付与して更新します。
+ * Twitterのユーザー名を指定都市の現在の天気と時刻を付与して更新する。
  */
-function ownWeatherUpdateUserNameWithCurrentWeather() {
+function weatherUpdateTwitterUserNameWithCurrentWeather() {
   const searchQuery = {
     city: weatherSearchCity,
     country: weatherSearchCountry,
