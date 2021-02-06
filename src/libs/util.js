@@ -22,21 +22,21 @@ function getCurrentFormatedDateTime() {
 }
 
 function takeFormatedDate(dt) {
-  return formatTime(dt).split(" ")[0];
+  return formatTime(dt).split(' ')[0];
 }
 
 function takeFormatedTime(dt) {
-  return formatTime(dt).split(" ")[1];
+  return formatTime(dt).split(' ')[1];
 }
 
 // formatTime はDate変数から時刻文字列を生成します。
 function formatTime(dt) {
-  var year    = dt.getFullYear();
-  var month   = ("0" + (dt.getMonth() + 1)).slice(-2);
-  var date    = ("0" + dt.getDate()).slice(-2);
-  var hours   = ("0" + dt.getHours()).slice(-2);
-  var minutes = ("0" + dt.getMinutes()).slice(-2);
-  var seconds = ("0" + dt.getSeconds()).slice(-2);
-//  return year + "/" + month + "/" + date + " " + hours + ":" + minutes + ":" + seconds + " GMT+0900(JST)"
-  return year + "-" + month + "-" + date + " " + hours + ":" + minutes + ":" + seconds;
+  const year = dt.getFullYear();
+  const month = ('0' + (dt.getMonth() + 1)).slice(-2);
+  const date = ('0' + dt.getDate()).slice(-2);
+  const hours = ('0' + dt.getHours()).slice(-2);
+  const minutes = ('0' + dt.getMinutes()).slice(-2);
+  const seconds = ('0' + dt.getSeconds()).slice(-2);
+  //  return year + "/" + month + "/" + date + " " + hours + ":" + minutes + ":" + seconds + " GMT+0900(JST)"
+  return year + '-' + month + '-' + date + ' ' + hours + ':' + minutes + ':' + seconds;
 }
