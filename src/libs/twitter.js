@@ -1,3 +1,9 @@
+/**
+ * TwitterWebServiceのインスタンスを生成して返す。
+ * @param {String} consumer_key TwitterのAPI key
+ * @param {String} consumer_secret TwitterのAPI secret key
+ * @return {TwitterWebService}
+ */
 function getInstance(consumer_key, consumer_secret) {
   return new TwitterWebService(consumer_key, consumer_secret);
 }
