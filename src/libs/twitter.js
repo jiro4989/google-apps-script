@@ -2,47 +2,47 @@ function getInstance(consumer_key, consumer_secret) {
   return new TwitterWebService(consumer_key, consumer_secret);
 }
 
-var TwitterWebService = function (consumer_key, consumer_secret) {
-  this.consumer_key    = consumer_key;
+var TwitterWebService = function(consumer_key, consumer_secret) {
+  this.consumer_key = consumer_key;
   this.consumer_secret = consumer_secret;
-}
+};
 
 TwitterWebService.prototype.getService = function() {
   return OAuth1.createService('Twitter')
-    .setAccessTokenUrl('https://api.twitter.com/oauth/access_token')
-    .setRequestTokenUrl('https://api.twitter.com/oauth/request_token')
-    .setAuthorizationUrl('https://api.twitter.com/oauth/authorize')
-    .setConsumerKey(this.consumer_key)
-    .setConsumerSecret(this.consumer_secret)
-    .setCallbackFunction('authCallback')
-    .setPropertyStore(PropertiesService.getUserProperties())
-}
+      .setAccessTokenUrl('https://api.twitter.com/oauth/access_token')
+      .setRequestTokenUrl('https://api.twitter.com/oauth/request_token')
+      .setAuthorizationUrl('https://api.twitter.com/oauth/authorize')
+      .setConsumerKey(this.consumer_key)
+      .setConsumerSecret(this.consumer_secret)
+      .setCallbackFunction('authCallback')
+      .setPropertyStore(PropertiesService.getUserProperties());
+};
 
 TwitterWebService.prototype.authorize = function() {
-  var service = this.getService();
+  const service = this.getService();
   if (service.hasAccess()) {
     Logger.log('Already authorized');
   } else {
-    var authorizationUrl = service.authorize();
+    const authorizationUrl = service.authorize();
     Logger.log('Open the following URL and re-run the script: %s', authorizationUrl);
   }
-}
+};
 
 TwitterWebService.prototype.reset = function() {
-  var service = this.getService();
+  const service = this.getService();
   service.reset();
-}
+};
 
 TwitterWebService.prototype.authCallback = function(request) {
-  var service      = this.getService();
-  var isAuthorized = service.handleCallback(request);
-  var mimeType     = ContentService.MimeType.TEXT;
+  const service = this.getService();
+  const isAuthorized = service.handleCallback(request);
+  const mimeType = ContentService.MimeType.TEXT;
   if (isAuthorized) {
     return ContentService.createTextOutput('Success').setMimeType(mimeType);
   } else {
     return ContentService.createTextOutput('Denied').setMimeType(mimeType);
   }
-}
+};
 
 /**
  * @type {Object} OAuth1認証用インスタンス。プロパティはGASの画面から設定が必要。
