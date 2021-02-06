@@ -60,11 +60,11 @@ function openWeatherMapUtilWeatherCodeToWeatherIcon(weatherCode) {
 
 /**
  * OpenWeatherMapのAPIレスポンスを天気アイコン文字列に変換して返す。
- * @param {Object} weather
+ * @param {Object} query
  * @return {String}
  */
-function openWeatherMapUtilFetchCurrentWeatherIcon(queryParam) {
-  const weather = openWeatherMapApiFetchWeather(queryParam.city, queryParam.country);
+function openWeatherMapUtilFetchCurrentWeatherIcon(query) {
+  const weather = openWeatherMapApiFetchWeather(query.city, query.country);
   const weatherCode = weather.weather[0].id;
   const weatherIcon = openWeatherMapUtilWeatherCodeToWeatherIcon(weatherCode);
   return weatherIcon;
