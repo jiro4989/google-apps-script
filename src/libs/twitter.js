@@ -8,7 +8,7 @@ function getInstance(consumer_key, consumer_secret) {
   return new TwitterWebService(consumer_key, consumer_secret);
 }
 
-var TwitterWebService = function(consumer_key, consumer_secret) {
+let TwitterWebService = function(consumer_key, consumer_secret) {
   this.consumer_key = consumer_key;
   this.consumer_secret = consumer_secret;
 };
