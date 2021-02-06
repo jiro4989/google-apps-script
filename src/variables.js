@@ -17,6 +17,11 @@ const userName = props.getProperty('USER_NAME');
  */
 const twitterUserId = props.getProperty('TWITTER_USER_ID');
 
+/**
+ * スクリプトプロパティを更新する。
+ * AppsScriptのUI上でスクリプトプロパティを更新できなくなったため
+ * プロパティを更新したいときだけ以下の設定値を書き換えて手動実行する。
+ */
 function setProperties() {
   props.setProperty('WEATHER_SEARCH_CITY', '');
   props.setProperty('WEATHER_SEARCH_COUNTRY', '');
