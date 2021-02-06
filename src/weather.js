@@ -8,7 +8,7 @@ const weatherSearchCity = props.getProperty('OWN_WEATHER_SEARCH_CITY');
  * 検索対象の国。
  * @type {String}
  */
-const ownWeatherSearchCountry = props.getProperty('OWN_WEATHER_SEARCH_COUNTRY');
+const weatherSearchCountry = props.getProperty('OWN_WEATHER_SEARCH_COUNTRY');
 
 /**
  * Twitterのユーザー名を指定都市の現在の天気と時刻を付与して更新します。
@@ -16,7 +16,7 @@ const ownWeatherSearchCountry = props.getProperty('OWN_WEATHER_SEARCH_COUNTRY');
 function ownWeatherUpdateUserNameWithCurrentWeather() {
   const searchQuery = {
     city: weatherSearchCity,
-    country: ownWeatherSearchCountry,
+    country: weatherSearchCountry,
   };
   const weatherIcon = openWeatherMapUtilFetchCurrentWeatherIcon(searchQuery);
   const newUserName = userName + weatherIcon + utilFormatTime(new Date());
@@ -46,7 +46,7 @@ function doPost(e) {
     const city = e.parameter.text.substr('weather:'.length);
     try {
       const weather = openWeatherMapApiFetchWeather(weatherSearchCity,
-          ownWeatherSearchCountry);
+          weatherSearchCountry);
       switch (weather.cod) {
         case 200:
           message = 'はい、[' + e.parameter.text.substr('weather:'.length) +']';
