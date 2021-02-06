@@ -1,16 +1,16 @@
 /**
  * TwitterWebServiceのインスタンスを生成して返す。
- * @param {String} consumer_key TwitterのAPI key
- * @param {String} consumer_secret TwitterのAPI secret key
+ * @param {String} consumerKey TwitterのAPI key
+ * @param {String} consumerSecret TwitterのAPI secret key
  * @return {TwitterWebService}
  */
-function getInstance(consumer_key, consumer_secret) {
-  return new TwitterWebService(consumer_key, consumer_secret);
+function getInstance(consumerKey, consumerSecret) {
+  return new TwitterWebService(consumerKey, consumerSecret);
 }
 
-const TwitterWebService = function(consumer_key, consumer_secret) {
-  this.consumer_key = consumer_key;
-  this.consumer_secret = consumer_secret;
+const TwitterWebService = function(consumerKey, consumerSecret) {
+  this.consumerKey = consumerKey;
+  this.consumerSecret = consumerSecret;
 };
 
 TwitterWebService.prototype.getService = function() {
@@ -18,8 +18,8 @@ TwitterWebService.prototype.getService = function() {
       .setAccessTokenUrl('https://api.twitter.com/oauth/access_token')
       .setRequestTokenUrl('https://api.twitter.com/oauth/request_token')
       .setAuthorizationUrl('https://api.twitter.com/oauth/authorize')
-      .setConsumerKey(this.consumer_key)
-      .setConsumerSecret(this.consumer_secret)
+      .setConsumerKey(this.consumerKey)
+      .setConsumerSecret(this.consumerSecret)
       .setCallbackFunction('authCallback')
       .setPropertyStore(PropertiesService.getUserProperties());
 };
