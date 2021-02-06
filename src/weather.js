@@ -2,13 +2,13 @@
  * 検索対象の都市。
  * @type {String}
  */
-const weatherSearchCity = props.getProperty('OWN_WEATHER_SEARCH_CITY');
+const weatherSearchCity = props.getProperty('WEATHER_SEARCH_CITY');
 
 /**
  * 検索対象の国。
  * @type {String}
  */
-const weatherSearchCountry = props.getProperty('OWN_WEATHER_SEARCH_COUNTRY');
+const weatherSearchCountry = props.getProperty('WEATHER_SEARCH_COUNTRY');
 
 /**
  * Twitterのユーザー名を指定都市の現在の天気と時刻を付与して更新します。
