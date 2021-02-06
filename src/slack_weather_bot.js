@@ -1,7 +1,7 @@
 // wip //
 
 function doPost(e) {
-    var verifyToken = "";
+    const verifyToken = "";
     
     if (e) {
       //投稿の認証
@@ -9,15 +9,15 @@ function doPost(e) {
         throw new Error("invalid token.");
       }
     
-      var app = SlackApp.create(slackIncomingWebhookToken);
+      const app = SlackApp.create(slackIncomingWebhookToken);
       
-      var chanel = "#weather";
-      var botName = "気象情報Bot";
+      const chanel = "#weather";
+      const botName = "気象情報Bot";
   
-      var message = "";
-      var city = e.parameter.text.substr("weather:".length);
+      let message = "";
+      const city = e.parameter.text.substr("weather:".length);
       try {
-        var weather = openWeatherMapApiFetchWeather(ownWeatherSearchCity, ownWeatherSearchCountry);
+        const weather = openWeatherMapApiFetchWeather(ownWeatherSearchCity, ownWeatherSearchCountry);
         switch (weather.cod) {
           case 200:
             message = "はい、[" + e.parameter.text.substr("weather:".length) +"]";
