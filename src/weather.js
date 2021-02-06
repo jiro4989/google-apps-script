@@ -2,7 +2,7 @@
  * 検索対象の都市。
  * @type {String}
  */
-const ownWeatherSearchCity = props.getProperty('OWN_WEATHER_SEARCH_CITY');
+const weatherSearchCity = props.getProperty('OWN_WEATHER_SEARCH_CITY');
 
 /**
  * 検索対象の国。
@@ -15,7 +15,7 @@ const ownWeatherSearchCountry = props.getProperty('OWN_WEATHER_SEARCH_COUNTRY');
  */
 function ownWeatherUpdateUserNameWithCurrentWeather() {
   const searchQuery = {
-    city: ownWeatherSearchCity,
+    city: weatherSearchCity,
     country: ownWeatherSearchCountry,
   };
   const weatherIcon = openWeatherMapUtilFetchCurrentWeatherIcon(searchQuery);
@@ -45,7 +45,7 @@ function doPost(e) {
     let message = '';
     const city = e.parameter.text.substr('weather:'.length);
     try {
-      const weather = openWeatherMapApiFetchWeather(ownWeatherSearchCity,
+      const weather = openWeatherMapApiFetchWeather(weatherSearchCity,
           ownWeatherSearchCountry);
       switch (weather.cod) {
         case 200:
